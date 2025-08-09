@@ -1,0 +1,432 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color: #ecf0f1;
+	overflow-y: hidden;
+}
+
+/** Loading animation no topo da tela **/
+#top_loading {
+	position: fixed;
+	height: auto;
+	top: 11px;
+	left: 11px;
+	z-index: 10;
+	display: none;
+	background: #F5F5F5;
+	border-radius: 50%;
+	box-shadow: 0px 0px 10px #888888;
+	padding: 7px;
+    width: 18%;
+    max-width: 100px;
+}
+#top_loading > .loading_animation {
+	width: 100%;
+	height: auto;
+}
+
+/** Overlay de loading  **/
+.loading_overlay  {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.2);
+	z-index: 5;
+	display: none;
+}
+.loading_animation {
+	-webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+.loading_image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	max-width: 64px;
+	margin-top: -32px;
+	margin-left: -32px;
+}
+/*****************************/
+
+
+/**** BARRA DE NOTIFICAOES *****/
+#notification-bar {
+	display:none;
+	width:100%;
+	min-height:40px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	text-align: center;
+	word-wrap: break-word;
+	border-bottom: 1px solid #A42732;
+	line-height: 40px;
+	font-weight: bold;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+.notification_error {
+	background-color: #f2dede;
+	color: #a94442;
+}
+.notification_warn {
+	background-color: #fcf8e3;
+	color: #8a6d3b;
+}
+.notification_info {
+	background-color: #d9edf7;
+	color: #31708f;
+}
+/*******************************/
+
+
+.marker-cluster-small {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+}
+
+.marker-cluster-small div {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+}
+
+.marker-cluster-medium {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+}
+.marker-cluster-medium div {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+}
+    
+.marker-cluster-large {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+}
+
+.marker-cluster-large div {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+}
+
+.marker-cluster-bus {
+    background-color: rgba(57, 194, 204, 0.6) !important;
+}
+
+.marker-cluster-bus div {
+    background-color: rgba(3, 169, 244, 0.4) !important;
+}
+
+
+/** Customização do popup do mapa **/
+.popup_black_theme > .leaflet-popup-content-wrapper > .leaflet-popup-content {
+	color: #fff;
+	font-size: 15px;
+}
+.popup_black_theme > .leaflet-popup-content-wrapper, .popup_black_theme > .leaflet-popup-tip-container > .leaflet-popup-tip {
+	background-color: rgba(45, 52, 54, 0.8);
+}
+
+.mapa_veiculos {
+	margin: 0 auto;
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+}
+
+.mapa_percurso_popup_container {
+	display: inline-block;
+	position: relative;
+	min-width: 200px;
+}
+.veiculo_info_linha_titulo {
+	color: white;
+	font-size: 18px;
+	cursor: pointer;
+}
+.mapa_percurso_popup_container .linha_hr {
+	margin: 0.6em 0;
+}
+.mapa_percurso_popup_table {
+	font-family: 'Roboto', Helvetica, sans serif;
+	color: #000;
+	font-size: 13px;
+}
+.mapa_percurso_popup_table_label {
+	text-align: right;
+	font-weight: bold;
+	font-size: 15px;
+	color: #fff;
+}
+.mapa_percurso_popup_table_spacer {
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+}
+.mapa_percurso_popup_table_value {
+	font-size: 15px;
+	color: #fff;
+}
+.mapa_titulo {
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	color: #fff;
+}
+
+.map_location_icon {
+	background-image: url('../img/location_icon.png');
+	width: 12px;
+    height: 16px;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.map_location_loading_icon {
+	background-image: url('../img/spinner.png');
+	width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.agency_card_container {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+    z-index: 401;
+    transition: .2s;
+    pointer-events: none;
+    opacity: 0;
+}
+.mapa_veiculos.loaded .agency_card_container {
+	opacity: 1;
+    pointer-events: unset;
+}
+.agency_card_container.hidden {
+	transform: translateY(100%);
+}
+.agency_card_container_inner {
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+.agency_card_container_content {
+	display: flex;
+}
+.agency_card_container_content > div {
+	flex: 1;
+}
+.agency_card {
+    padding: 5px 8px;
+    border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border: 3px solid rgba(105, 105, 105, 0.4);
+    font-size: 15px;
+    font-weight: 100;
+	margin-top: 8px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.agency_card:hover {
+	opacity: .9;
+	font-weight: bold;
+}
+.agency_card.agency_card_legenda:hover {
+	opacity: unset;
+	font-weight: unset;
+}
+.agency_card_toggler {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	transform: translateY(-100%);
+	background-color: gray;
+	height: 30px;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	padding-top: 8px;
+    padding-left: 25px;
+    padding-right: 25px;
+    cursor: pointer;
+}
+.agency_card_toggler > img {
+	width: 15px;
+	transition: .2s;
+}
+.agency_card_toggler:hover {
+	background-color: #495057;
+}
+.agency_card_container.hidden .agency_card_toggler > img {
+	transform: rotate(180deg);
+}
+
+
+@media only screen and (max-width: 500px) {
+	.agency_card_container_content {
+		display: block;
+		text-align: center;
+	}
+	.agency_card {
+		width: 95px;
+    	font-size: 13px;
+    	line-height: 18px;
+    	padding: 3px 5px;
+    	margin-top: 5px;
+	}
+	.agency_card_container_inner {
+		padding-right: 5px;
+		padding-bottom: 5px;
+	}
+	.agency_card_toggler {
+		right: 5px;
+		padding-left: 40px;
+    	padding-right: 40px;
+	}
+	.agency_card_container_info {
+		text-align: center !important;
+	}
+	.agency_card_legenda {
+		border-top-left-radius: 0;
+		font-size: 11px;
+	}
+}
+.agency_card_container_label {
+	margin-left: 0px;
+	max-width: 200px;
+}
+
+.agency_card_servico {
+	text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+.agency_card_legenda {
+	text-align: center;
+    background: rgb(65, 134, 13);
+    color: white;
+    margin-top: 0;
+    border-top-right-radius: 0;
+    cursor: default;
+}
+.agency_card_marechal {
+    background: #d88232;
+    color: white;
+}
+.agency_card_piracicabana {
+    background: #c4242d;
+    color: white;
+}
+.agency_card_pioneira {
+    background: #faf17d;
+    color: black;
+}
+.agency_card_urbi {
+    background: #3ba2da;
+    color: white;
+}
+.agency_card_sao_jose {
+    background: #14e116;
+    color: white;
+}
+.agency_card_disabled {
+	background: grey !important;
+}
+.agency_card_disabled.agency_card_pioneira {
+    color: white !important;
+}
+
+.agency_card_container_info{
+	text-align: left;
+}
+
+.leaflet-control-attribution {
+	display: none;
+}
+
+
+.filtro_linha_container {
+	position: absolute;
+	top: 0;
+	right: 53px;
+	z-index: 401;
+	transition: .2s;
+	pointer-events: none;
+}
+.mapa_veiculos.loaded .filtro_linha_container {
+	opacity: 1;
+    pointer-events: unset;
+}
+
+.filtro_linha_container.hidden {
+	transform: translateY(-100%);
+}
+.filtro_linha_container_inner {
+    padding: 7px;
+	margin-top: 10px;
+	background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(131, 131, 131, 0.2);
+    border-radius: 10px;
+}
+
+.container_filtro {
+	margin-top: 7px;
+}
+.container_btn_update {
+	padding-right: 7px;
+}
+.container_checkbox_options {
+	font-size: 16px;
+}
+.container_checkbox_options .form-check-label,
+.container_checkbox_options .form-check-input {
+	cursor: pointer;
+}
+.container_checkbox_options .form-check-input:hover ~ .form-check-label,
+.container_checkbox_options .form-check-label:hover {
+	font-weight: bold;
+}
+
+
+.checkbox_operacao {
+	transform: scale(1.2);
+	margin-bottom: 0;
+	margin-top: 1px;
+	display: block;
+	margin-left: 17px;
+}
+.checkbox_operacao_label {
+	font-size: 12px;
+}
+
+.leaflet-control-layers-toggle {
+	width: 30px !important;
+	height: 30px !important;
+	background-image: url(images/layers-min.png) !important;
+	background-size: unset !important;
+}
+
+.container{
+	margin-top: -5px;
+}
+
+
+.horizontal_flex {
+	display: flex;
+	flex-direction: row;
+}
+.horizontal_flex > div {
+	flex: 1;
+}
+.horizontal_flex > div.collapsed_flex {
+	flex: none;
+}
+
+.select2-search__field {
+	min-height: 30px;
+}

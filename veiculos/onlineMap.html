@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+	    
+	    <title>SEMOB - Veículos em Tempo Real</title>
+	    
+	    <link rel="stylesheet" media="all" href="css/css.css"/>
+	    <link rel="stylesheet" media="all" href="css/select2.css"/>
+	    <link rel="stylesheet" media="all" href="css/leaflet.css"/>
+	    <link rel="stylesheet" media="all" href="css/MarkerCluster.css"/>
+	    <link rel="stylesheet" media="all" href="css/MarkerCluster.Default.css"/>
+		<link rel="stylesheet" media="all" href="css/L.Control.Locate.css"/>
+		<link rel="stylesheet" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+		<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="js/select2.min.js"></script>
+	    <script type="text/javascript" src="js/leaflet.js"></script>
+	    <script type="text/javascript" src="js/leaflet.markercluster.js"></script>
+	    <script type="text/javascript" src="js/leaflet.markercluster.freezable.js"></script>
+	    <script type="text/javascript" src="js/leaflet.control.locate.min.js"></script>
+	    <script type="text/javascript" src="js/js.js"></script>
+
+	    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+		<!--script async src="https://www.googletagmanager.com/gtag/js?id=UA-105741403-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments)};
+			gtag('js', new Date());
+
+			gtag('config', 'UA-105741403-1');
+		</script-->
+	</head>
+	<body>
+		<div id="notification-bar"></div>
+		
+		<a id="top_loading">
+			<img class="loading_animation" src="img/load.png"/>
+		</a>
+
+		<div id="map" class="mapa_veiculos">
+			
+			<div class="filtro_linha_container hidden">
+				<div class="filtro_linha_container_inner">
+					<div class="horizontal_flex">
+						<div class="container_btn_update">
+							<button id="btnUpdate" onclick="onClickBtnUpdate();" style="line-height: 21px;" class="btn btn-primary btn-lg" title="Atualizar veículos">Atualizar</button>
+						</div>
+						<div class="container_checkbox_options">
+							<div class="form-check">
+								<input id="checkBoxUpdate" type="checkbox" name="checkbox_update" onchange="toggleAutoUpdate();" title="Ativar atualização periódica de veículos" class="form-check-input"/>
+								<label for="checkBoxUpdate" class="form-check-label" title="Ativar atualização periódica de veículos">Auto</label>					  
+							</div>
+							<div class="form-check">
+								<input id="checkBoxOperacao" type="checkbox" name="checkbox_update" onchange="toggleEmOperacao();" title="Exibe somente veículos que estão operando uma linha." class="form-check-input"/>
+								<label for="checkBoxOperacao" class="form-check-label" title="Exibe somente veículos que estão operando uma linha.">Operação</label>
+							</div>
+						</div>
+					</div>
+					<div class="container_filtro">
+						<select id="selectFiltro" multiple="multiple" style="width: 100%;"></select>
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="agency_card_container hidden">
+				<div class="agency_card_toggler" onclick="togglePanel('.agency_card_container')" title="Esconder/Recolher">
+					<img src="img/arrow-down.svg"/>
+				</div>
+				<div class="agency_card_container_inner">
+					<div class="agency_card agency_card_legenda">
+						<div class="agency_card_container_content">
+							<div>
+								<span>Frota Operacional / Frota</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="agency_card agency_card_marechal" title="Ocultar/Exibir veículos" onclick="onClickAgencyCard(event, 'agency_card_marechal', 'AGENCY_MARECHAL');">
+						<div class="agency_card_container_content">
+							<div class="agency_card_container_label">
+								<span>Marechal</span>
+							</div>
+							<div class="agency_card_container_info">
+								<span id="info_marechal"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="agency_card agency_card_piracicabana" title="Ocultar/Exibir veículos" onclick="onClickAgencyCard(event, 'agency_card_piracicabana', 'AGENCY_PIRACICABANA');">
+						<div class="agency_card_container_content">
+							<div class="agency_card_container_label">
+								<span>Piracicabana&nbsp;</span>
+							</div>
+							<div class="agency_card_container_info">
+								<span id="info_piracicabana"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="agency_card agency_card_pioneira" title="Ocultar/Exibir veículos" onclick="onClickAgencyCard(event, 'agency_card_pioneira', 'AGENCY_PIONEIRA');">
+						<div class="agency_card_container_content">
+							<div class="agency_card_container_label">
+								<span>Pioneira</span>
+							</div>
+							<div class="agency_card_container_info">
+								<span id="info_pioneira"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="agency_card agency_card_urbi" title="Ocultar/Exibir veículos" onclick="onClickAgencyCard(event, 'agency_card_urbi', 'AGENCY_URBI');">
+						<div class="agency_card_container_content">
+							<div class="agency_card_container_label">
+								<span>Urbi</span>
+							</div>
+							<div class="agency_card_container_info">
+								<span id="info_urbi"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="agency_card agency_card_sao_jose" title="Ocultar/Exibir veículos" onclick="onClickAgencyCard(event, 'agency_card_sao_jose', 'AGENCY_SAO_JOSE');">
+						<div class="agency_card_container_content">
+							<div class="agency_card_container_label">
+								<span>BsBus</span>
+							</div>
+							<div class="agency_card_container_info">
+								<span id="info_sao_jose"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
