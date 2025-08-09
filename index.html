@@ -1,0 +1,928 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,700,400" rel="stylesheet" type="text/css">
+    
+    <title>SEMOB - DFnoPonto</title>
+    
+    <link rel="stylesheet" media="all" href="css/estilo.css"/>
+	<link rel="stylesheet" media="all" href="css/select2.min.css"/>
+            
+	<script type="text/javascript" src="ol/OpenLayers.js"></script>
+	<!--<script type="text/javascript" src="ol/AnimatedCluster.js"></script>-->
+	<script type="text/javascript" src="ol/CenteredCluster.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="js/select2.min.js"></script>
+	<script type="text/javascript" src="js/responsivevoice.js"></script>
+    <script type="text/javascript" src="js/javascript.js"></script>
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<!--script async src="https://www.googletagmanager.com/gtag/js?id=UA-105741403-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments)};
+		gtag('js', new Date());
+
+		gtag('config', 'UA-105741403-1');
+	</script-->
+   <!-- Monitorar Poelo SIMON antigo 
+
+<script 
+  src="https://cdn.simonops.com/divedot-rum.prod.js" 
+  type="text/javascript">
+</script>
+<script>
+    window.DD_RUM && window.DD_RUM.init({
+      applicationId: '56b8e4ec-68ac-41f4-987e-220237ff4ab9',
+      clientToken: 'pube5e0ed7689c047f88047670a11cab6d0',
+      service: 'DF NO PONTO PRODUCAO',
+      env: 'PRODUCAO',
+      // Especifique um número de versão para identificar a versão implantada de sua aplicação no Divedot,
+      // version: '1.0.0',
+      //site: 'gestaoit.semob.df.gov.br/_ddsite',
+      site: 'smb02451.dd.simonops.com/_ddsite',
+      trackInteractions: true,
+      sampleRate: 100,
+    });
+</script>
+ -->
+
+<!-- Monitorar Poelo SIMON novo -->
+
+
+<!--script>
+   (function(h,o,u,n,d) {
+     h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+     d=o.createElement(u);d.async=1;d.src=n
+     n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+   })(window,document,'script','https://cdn.simonops.com/divedot-rum.prod.js','DD_RUM')
+   DD_RUM.onReady(function() {
+     DD_RUM.init({
+       applicationId: '56b8e4ec-68ac-41f4-987e-220237ff4ab9',
+       clientToken: 'pube5e0ed7689c047f88047670a11cab6d0',
+       service: 'DF NO PONTO PRODUCAO',
+       env: 'PRODUCAO',
+       // Especifique um número de versão para identificar a versão implantada de sua aplicação no Divedot,
+       // version: '1.0.0',
+       site: 'gestaoit.dd.semob.df.gov.br/_ddsite',
+       trackInteractions: true,
+       sampleRate: 100,
+     })
+   })
+</script-->
+
+
+</head>
+<body> 
+	<div id="notification-bar"></div>
+
+	<!--<img id="top_logo" src="img/logo_mini.png" onclick="onBtnTop(event);" style="cursor: pointer;" alt="" title="Voltar" />-->
+
+	<a id="top_btn_voltar" title="Voltar">
+		<img src="img/back.png" style="max-width: 100%; height: auto;"/>
+	</a>
+
+	<a id="top_loading">
+		<img class="loading_animation" style="max-width: 100%; height: auto;" src="img/load_mini.png"/>
+	</a>
+	
+	<!-- INÍCIO -->
+	<div id="containerInicio" style="display: block;">
+		<img class="dfnoponto-logo" src="img/logo-dfnoponto-verde.png"/>
+
+		<p style="
+    /* font-weight: bold; */
+    font-size: 30px;
+    font-family: roboto;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto; display: none;
+">Nosso serviço se encontra em manutenção. Pedimos desculpas pelo transtorno e aguarde a normalização do sistema.</p>
+
+		
+		<!-- <h1 class="inicio_titulo">Por onde começar sua <strong>Pesquisa</strong>?</h1> -->
+		
+		<!-- Compreende o formulário de pesquisa -->
+		<div>
+			<!-- Menu do tipo de pesquisa tipo de pesquisa -->
+			<form name="formPesq">
+				<div class="form_menu" style="margin-left: auto; margin-right: auto;">
+					<div class="form_menu_tab form_menu_tab_first" onclick="abre_formulario(event, 'form_linha');">
+						<font class="form_menu_label">Linha</font>
+						<input name="opcao" type="radio" value="form_linha" style="display: none;"/>
+					</div>
+					<div class="form_menu_tab" onclick="abre_formulario(event, 'form_cidade');">
+						<font class="form_menu_label">Cidade</font>
+						<input name="opcao" type="radio" value="form_cidade" style="display: none;"/>
+					</div>
+					<div class="form_menu_tab" onclick="abre_formulario(event, 'form_referencia');">
+						<font class="form_menu_label">Referência</font>
+						<input name="opcao" type="radio" value="form_referencia" style="display: none;"/>
+					</div>
+					<div class="form_menu_tab" onclick="abre_formulario(event, 'form_parada');">
+						<font class="form_menu_label">Mapa</font>
+						<input name="opcao" type="radio" value="form_parada" style="display: none;"/>
+					</div>
+					<a class="form_menu_tab form_menu_label" href="veiculos/onlineMap.html" title="Posição de Veículos - Em Aprimoramento" target="_blank">Veículos</a>
+					<a class="form_menu_tab form_menu_label" href="http://geomobi.semob.df.gov.br/" title="Posição de Veículos - Em Aprimoramento" target="_blank">GeoMobi</a>
+					<div id="menuTabSpeech" class="form_menu_tab form_menu_tab_last" style="flex: 1; background-image: url('img/mic.png'); background-position: center; background-repeat: no-repeat;" onclick="abre_formulario(event, 'form_speech');">
+					</div>
+				</div>
+			</form>
+
+			<!-- <hr style="opacity:0.25; width: 50%;" > -->
+
+			<!-- Bloco de apresentação inicialmente apresentando -->
+			<div id="form_apresentacao" style="display: block;"> 
+				<p class="form_texto">Olá!! Seja bem-vindo ao <font style="color:black; font-weight:400;">DFnoPonto</font>, novo sistema de consulta de horários e linhas.</p>
+				<p class="form_texto">Selecione uma das quatro opções <font style="color:black; font-weight:400;">acima</font> para iniciar a sua busca.</p>
+
+				<!-- Link para a page de sugestão -->
+				<a onclick="showContatoPage(event);" href="#" title="Contato" class="btn_contato_centro">
+					<img src="img/announcement.png" class="btn_shadow" style="border-style: none; max-width: 120px;"/>
+				</a>
+			</div>
+
+
+			<!-- Formulário de pesquisa por linha -->
+			<div id="form_linha" style="display: none;">
+				<img src="img/main_bus.jpg" class="form_imagem">
+
+				<p class="form_texto">Pesquise abaixo a <font style="color:black; font-weight:400">linha</font> que deseja consultar.</p>
+
+				<input id="inputNumeroLinha" class="form_input" style="text-align: center;" type="text" list="datalistLinha" placeholder="Ex.: 099.1"/>
+				<datalist id="datalistLinha"></datalist>
+
+				<a href="#" onclick="pesquisar(event);" class="form_button" style="margin-top: 30px;">
+					<img height="25" src="img/lupab.png" style="margin-right:10px;">Pesquisar
+				</a>
+			</div>
+			
+			<!-- Formulário de pesquisa por origem/destino por cidade -->
+			<div id="form_cidade" style="display: none;">
+				<img src="img/main_cidade.jpg" class="form_imagem">
+
+				<p class="form_texto">Selecione abaixo a cidade que será seu ponto de <font style="color:black; font-weight:400">origem</font> e de <font style="color:black; font-weight:400">destino</font></p>
+
+				<div style="display: inline-block;">
+					<div style="display: inline-block;">
+						<font class="form_label_letreiro">Cidade Origem</font>
+						<select class="form_select">
+							<option value="" selected disabled>Origem</option>
+						    <option value="12">Águas Claras</option>
+							<option value="24">Asa Norte</option>
+							<option value="26">Asa Sul</option>
+							<option value="1">Brazlândia</option>
+							<option value="20">Candangolândia
+							<option value="14">Ceilândia</option>
+							<option value="11">Cidade Estrutural</option>
+							<option value="22">Cruzeiro</option>
+							<option value="10">Gama</option>
+							<option value="21">Guará</option>
+							<option value="6">Itapoã</option>
+							<option value="30">Jardim Botânico</option>
+							<option value="5">Lago Norte</option>
+							<option value="8">Lago Sul</option>
+							<option value="32">Noroeste</option>
+							<option value="19">Nucleo Bandeirante</option>
+							<option value="7">Paranoa</option>
+							<option value="27">Park Way</option>
+							<option value="2">Planaltina</option>
+							<option value="25">Plano Piloto</option>
+							<option value="16">Recanto das Emas</option>
+							<option value="18">Riacho Fundo I</option>
+							<option value="17">Riacho Fundo II</option>
+							<option value="15">Samambaia</option>
+							<option value="9">Santa Maria</option>
+							<option value="29">São Sebastião</option>
+							<option value="4">Sobradinho</option>
+							<option value="3">Sobradinho II</option>
+							<option value="31">Sudoeste</option>
+							<option value="13">Taguatinga</option>
+							<option value="28">Vicente Pires</option>
+						</select>
+					</div>
+					<div style="display: inline-block; margin-top: 5px;">
+						<font class="form_label_letreiro">Cidade Destino</font>
+						<select class="form_select">
+							<option value="" selected disabled>Destino</option>
+						    <option value="12">Águas Claras</option>
+							<option value="24">Asa Norte</option>
+							<option value="26">Asa Sul</option>
+							<option value="1">Brazlândia</option>
+							<option value="20">Candangolândia
+							<option value="14">Ceilândia</option>
+							<option value="11">Cidade Estrutural</option>
+							<option value="22">Cruzeiro</option>
+							<option value="10">Gama</option>
+							<option value="21">Guará</option>
+							<option value="6">Itapoã</option>
+							<option value="30">Jardim Botânico</option>
+							<option value="5">Lago Norte</option>
+							<option value="8">Lago Sul</option>
+							<option value="32">Noroeste</option>
+							<option value="19">Nucleo Bandeirante</option>
+							<option value="7">Paranoa</option>
+							<option value="27">Park Way</option>
+							<option value="2">Planaltina</option>
+							<option value="25">Plano Piloto</option>
+							<option value="16">Recanto das Emas</option>
+							<option value="18">Riacho Fundo I</option>
+							<option value="17">Riacho Fundo II</option>
+							<option value="15">Samambaia</option>
+							<option value="9">Santa Maria</option>
+							<option value="29">São Sebastião</option>
+							<option value="4">Sobradinho</option>
+							<option value="3">Sobradinho II</option>
+							<option value="31">Sudoeste</option>
+							<option value="13">Taguatinga</option>
+							<option value="28">Vicente Pires</option>
+						</select>
+					</div>
+				</div>
+				
+				<a href="#" onclick="pesquisar(event);" class="form_button" style="margin-top: 30px;">
+					<img height="25" src="img/lupab.png" style="margin-right: 10px; ">Pesquisar
+				</a>
+			</div>
+			
+			<!-- Formulário de pesquisa por origem/destino por ponto referência --> 
+			<div id="form_referencia" style="display: none;">
+				<img src="img/main_ref.jpg" class="form_imagem">
+
+				<p class="form_texto">Preencha nos campos abaixo as referências dos pontos de <font style="color:black; font-weight:400">origem</font> e <font style="color:black; font-weight:400">destino</font></p>
+
+				<div style="display: inline-block;">
+					<div style="display: inline-block;">
+						<font class="form_label_letreiro">Origem</font>
+						<select id="refOrigem" class="selectReferencia" style="width: 220px;"></select>
+					</div>
+					<div style="display: inline-block; margin-top: 5px;">
+						<font class="form_label_letreiro">Destino</font>
+						<select id="refDestino" class="selectReferencia" style="width: 220px;"></select>
+					</div>
+				</div>
+
+				<a href="#" onclick="pesquisar(event);" class="form_button" style="margin-top: 30px;">
+					<img height="25" src="img/lupab.png" style="margin-right: 10px;">Pesquisar
+				</a>
+			</div>
+
+			<!-- Formulário de pesquisa por origem/destino por parada -->
+			<div id="form_parada" style="display: none;">
+
+				<div style="display: inline-block;">
+				
+					<!-- Mapa de paradas -->
+					<div id="mapa-parada" style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; border:solid thin #CCC; background: gray;">
+						<!--<a class="mapa_btn_close mapa_btn_close_screen" style="display: none;" onclick="toggleMapParada(event);">Ocultar mapa de Paradas</a>-->
+
+						<!-- Botão que abre o painel de diálogo do mapa -->
+						<div id="btnShowMapDialog" title="Painel" onclick="toggleMapParadaDialog(event);" style="display: none; position: absolute; cursor: pointer; left: 0; top: 50%; transform: translateY(-50%); padding: 3px; width: 30px; background-color: rgba(173, 173, 177, 0.67); z-index: 4; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+							<img src="img/close.png" class="rotate_half"/>
+						</div>
+
+						<!-- Botão de localização -->
+						<a class="mapa_btn_locate mapa_btn" title="Mostrar meu local" onclick="requestLocationMapaParadas(event);"><img src="img/locate.png"/></a>
+
+						<!-- Botão de fullscreen -->
+						<a class="mapa_btn_fullscreen mapa_btn" title="Tela cheia" onclick="fullscreenMapaParadas(event);"><img src="img/fullscreen.png"/></a>
+
+						<!-- Botão que de legenda -->
+						<div id="btnShowPanelLegendaParada" class="mapa_legenda_btn" onclick="togglePanelLegendaParada(event);" title="Legenda" style="background-color: rgba(173, 173, 177, 0.67); padding: 10px; border-bottom-left-radius: 10px; border-top-left-radius: 10px;">
+							<span style="color: yellow; font-weight: bold;">L</span>
+						</div>
+
+						<!-- Painel de legenda -->
+						<div id="mapa-parada-legend-btn" class="mapa_legenda_panel">
+							<div style="min-width: 130px;">
+								<img src="img/parada.svg" style="width: 44px; height: auto;" alt="Parada de ônibus">
+								<span style="vertical-align: super;">Parada</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/terminal.svg" style="width: 44px; height: auto;" alt="Terminal rodoviário">
+								<span style="vertical-align: super;">Terminal</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/terminal_brt.svg" style="width: 44px; height: auto;" alt="Terminal rodoviário BRT">
+								<span style="vertical-align: super;">T. BRT</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/terminal_metro.svg" style="width: 44px; height: auto;" alt="Estação do Metrô">
+								<span style="vertical-align: super;">Est. Metrô</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/bike.svg" style="width: 44px; height: auto;" alt="Bicicletário">
+								<span style="vertical-align: super;">Bicicletário</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/posto_sba.svg" style="width: 44px; height: auto;" alt="Posto SBA">
+								<span style="vertical-align: super;">Posto SBA</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/iconmap-origem.png" style="width: 44px; height: auto;" alt="Ponto definido como origem">
+								<span style="vertical-align: super;">Origem</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/iconmap-destino.png" style="width: 44px; height: auto;" alt="Ponto definido como destino">
+								<span style="vertical-align: super;">Destino</span>
+							</div>
+							<div style="min-width: 130px;">
+								<img src="img/location-point.png" style="width: 44px; height: auto;" alt="Localização do usuário">
+								<span style="vertical-align: super;">Meu Local</span>
+							</div>
+						</div>
+
+						
+						<div id="map" style="margin: 0 auto; position: relative; z-index: 3; width: 100%; height: 100%;"></div>
+
+						<div id="pointAnimationParada" style="background-color: transparent; width: 200px; height: 100px; position: absolute; top: 50%; left: 50%; z-index: 3; pointer-events:none;">
+							<div style="height:5em; position:relative; pointer-events:none;">
+								<div class="clickEffect" style="animation-iteration-count:infinite;position:absolute;top:50%;left:50%;"></div>
+								<img src="img/tap.png" style="position:absolute;top:50%;left:50%;animation:clickJitter 1s infinite linear; pointer-events:none;">
+							</div>
+						</div>
+						
+						<!-- Painel lateral de seleção de parada -->
+						<div id="mapa-parada-dialogo" style="position: absolute; display: block; left: 0; top: 0; background-color: rgba(173, 173, 177, 0.67); height: 100%; z-index: 5; max-width: 230px;">
+
+							<!-- Botão que recolhe o diálogo do mapa -->
+							<a onclick="toggleMapParadaDialog(event);" style="cursor: pointer; position: absolute; right: 0; top: 0;" title="Recolher">
+								<img src="img/close.png" style="width: 28px; height: auto; margin: 10px;"/>
+							</a>
+
+							<div id="mapa-parada-dialogo-container" style="display: block; min-width: 150px;">
+								<p class="form_texto"><font style="color:white; font-weight:400">Mapa</font></p>
+								
+								<!-- Inputs de origem e destino -->
+								<div style="width: 200px; margin-left: auto; margin-right: auto; position: relative;">
+									<font class="form_label_letreiro" style="width: 100%;">Nº Parada de Origem</font>
+									<input id="paradaOrigemMapa" class="form_input form_parada_origem" style="text-align: center; font: 15px 'Roboto', Helvetica, sans serif; width: 100%; height: 40px;" type="text" placeholder="Ex.: 3458"/>
+									<img src="img/iconmap-origem.png" style="position: absolute; width: 20px; height: auto; right: 2px; bottom: 10px; opacity: 0.7;" onclick="mapaParadasOrigemCenter();">
+								</div>
+								<div style="width: 200px; margin-left: auto; margin-right: auto; margin-top: 10px; position: relative;">
+									<font class="form_label_letreiro" style="width: 100%;">Nº Parada de Destino</font>
+									<input id="paradaDestinoMapa" class="form_input form_parada_destino" style="text-align: center; font: 15px 'Roboto', Helvetica, sans serif; width: 100%; height: 40px;" type="text" placeholder="Ex.: 9637"/>
+									<img src="img/iconmap-destino.png" style="position: absolute; width: 20px; height: auto; right: 2px; bottom: 10px; opacity: 0.7;" onclick="mapaParadasDestinoCenter();">
+								</div>
+								
+								<!-- Tabela que mostra as propriedades do ponto selecionado -->
+								<table id="mapa-parada-table" class="mapa_table_banner" style="width: 198px; margin-top: 20px; margin-left: auto; margin-right: auto;">
+									<tbody style="width: 100%;">
+										<tr>
+											<td style="font-weight: bold; text-align: center; color: black;">Por favor, amplie o mapa para selecionar uma parada.</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<!-- Switch (origem/destino) -->
+								<div id="paradaSwitch" style="text-align: center; display: none;">
+									<font class="form_texto" style="color: black; display: block; padding: 10px;">Definir como:</font>
+								
+									<div id="radioParadaContainer" style="display: inline-block; margin-left: auto; margin-right: auto;">
+										<div style="float:left; position: relative;" onclick="setCurrentParadaAs('origem');">
+											<label class="label_btn_sentido_unchecked_left label_sentido_radio" style="padding: 5px;">Origem</label>
+											<input class="radio_sentido" type="radio" value="origem" name="sentido">
+										</div>
+										<div style="float:right; position: relative;" onclick="setCurrentParadaAs('destino');">
+											<label class="label_btn_sentido_unchecked_right label_sentido_radio" style="padding: 5px;">Destino</label>
+											<input class="radio_sentido" type="radio" value="destino" name="sentido">
+										</div>
+									</div>
+								</div>
+
+								<!-- Botão pesquisar -->
+								<a href="#" onclick="pesquisar(event);" class="form_button" style="margin-top: 20px; max-width:135px; height:35px; font-size:20px; padding-top:0px;">
+									<img height="25" src="img/lupab.png" style="margin-right: 10px;">Pesquisar
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Formulário de pesquisa por voz --> 
+			<div id="form_speech" style="display: none;">
+				<a onclick="initSpeechRecognizer(event);" href="#">
+					<img src="img/mic_empty.png" class="form_imagem btn_shadow" alt="Contato"/>
+				</a>
+
+				<p class="form_texto">Toque e fale o nº de uma linha <font style="color:black; font-weight:400">("linha 100 ponto 1")</font> ou sua origem e destino <font style="color:black; font-weight:400"> ("origem: Brazlândia, destino: Taguatinga")</font></p>
+			</div>
+		</div>
+
+		<!-- Link para a page de sugestão -->
+		<a id="btnContato" style="text-align: left; display: none;" onclick="showContatoPage(event);" href="#" title="Contato">
+			<img src="img/dialog_ballon.png" class="img_contato_page btn_shadow" style="border-style: none;"/>
+		</a>
+
+		<!-- Link para a page de sugestão -->
+		<!-- <a id="btnOnlineMarker" style="text-align: right;" target="_blank" href="https://www.sistemas.dftrans.df.gov.br/horarios/test/onlineMap.html" title="Posição de veículos - em teste">
+			<img src="img/online_marker.png" class="img_online_marker_page btn_shadow" style="border-style: none;"/>
+		</a> -->
+
+		<span id="labelVersao" style="display: none;" class="label_versao">DFnoPonto<br/>Versão em Teste - <span id="anoVersao"></span>
+	</div>
+
+	
+	<!-- LISTA DE LINHAS -->
+	<div id="containerLinhas" style="display: none;">
+		<div id="containerLinhasLista">
+			<div style="top: 0px; text-align: center;">
+				<font class="lista_linhas_titulo">SELECIONE UMA LINHA</font>
+				<hr style="margin-top:20px; margin-bottom: 20px; width: 50%;" size="1" color="#41860d">
+			</div>
+			
+			<div style="text-align: center; position: relative;">
+				<div class="filtro_container" style="margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+					<input id="filtroLinhas" type="text" placeholder="Filtrar" class="filtro_input"/>
+				</div>
+				
+				<div style="vertical-align: middle; display: inline-block;">
+					<div id="radioTipoListaLinhasContainer" style="display: inline-block;">
+						<div style="float:left; position: relative;" onclick="setCurrentListaLinhasAs('tableList');">
+							<label class="label_btn_sentido_checked_left label_sentido_radio lista_linhas_btn_tipo" style="background-image: url('img/list.png');"></label>
+							<input class="radio_sentido" type="radio" value="tableList" name="tipoLista">
+						</div>
+						<div style="float:right; position: relative;" onclick="setCurrentListaLinhasAs('gridList');">
+							<label class="label_btn_sentido_unchecked_right label_sentido_radio lista_linhas_btn_tipo" style="background-image: url('img/grid.png');"></label>
+							<input class="radio_sentido" type="radio" value="gridList" name="tipoLista">
+						</div>
+					</div>
+					
+					<select class="lista_linhas_select_ordenacao">
+						<option value="" selected disabled>Ordenar...</option>
+						<option value="numero">Número</option>
+						<option value="descricao">Descrição</option>
+						<option value="faixaTarifaria.tarifa">Tarifa</option>
+						<option value="sentido">Sentido</option>
+					</select>
+
+					<a id="btnSpeakLista" href="#" class="btn_speak speaker" style="display: inline-block; position: relative; bottom: 4px; left: 3px;"></a>
+				</div>
+			</div>
+			 
+			<div style="position: relative; text-align: center; padding-top: 20px; overflow-x: hidden;">
+				<div id="listaLoading" class="loading_overlay">
+					<img class="loading_image loading_animation" src="img/load.png" alt="Carregando">
+				</div>
+
+				<div style="display: inline-block;">
+					<div id="listaLinhas" class="lista_linhas"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="containerIntegracao" style="display: none;">
+	
+			<div style="margin-top: 5px; text-align: center;">
+				<font class="lista_linhas_titulo">SELECIONE UMA INTEGRAÇÃO</font>
+				<hr style="margin-top:20px; margin-bottom: 20px; width: 50%;" size="1" color="#41860d">
+			</div>
+
+			<div class="filtro_container" style="margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+				<input id="filtroIntegracao" type="text" placeholder="Filtrar" class="filtro_input"/>
+			</div>
+					 
+			<div style="position: relative; text-align: center; padding-top: 20px; overflow-x: hidden;">
+				<div id="tabelaIntegracao" class="tabela_integracao"></div>
+			</div>
+
+		</div>
+	</div>
+	
+
+	<!-- INTEGRAÇÃO -->
+	<div id="containerIntegracoes" style="display: none; padding-top: 50px; position: relative;">
+		<div style="top: 0px; text-align: center;">
+			<font class="lista_linhas_titulo">INTEGRAÇÃO</font>
+			<hr style="margin-top:20px; margin-bottom: 20px; width: 50%;" size="1" color="#41860d"/>
+		</div>
+		<p style="text-align: center;">Nenhuma linha direta encontrada. É necessário fazer integração.</p>
+
+		<div id="integracao_loading_panel" style="display: none; text-align: center;">
+			<div style="background: #F5F5F5; border-radius: 50%; box-shadow: 0px 0px 10px #888888; padding: 10px; display: inline-block; position: absolute; left: 50%; transform: translateX(-50%);">
+				<img class="loading_animation" style="max-width: 100%; height: auto;" src="img/load_mini.png"/>
+			</div>
+		</div>
+
+		<div style="max-width: 1000px; margin-left: auto; margin-right: auto; position: relative;">
+			<div style="max-width: 700px;">
+				<div id="integracao_container_table" style="display: none;">
+					<div id="input_filtro" style="text-align: center; margin-bottom: 10px;">
+						<div class="filtro_container" style="width: auto; max-width: 200px; margin-left: auto; margin-right: auto;">
+							<input type="text" placeholder="Filtrar" class="filtro_input"/>
+						</div>
+					</div>
+					<div id="integracao_container_linhas">
+
+					</div>
+				</div>
+				<div id="tree_integracao">
+					
+				</div>
+			</div>
+
+			<div style="position: absolute; top: 0; right: 0;">
+				<div id="path_integracao" style="display: none;">
+					
+				</div>
+				<div id="btn_finalizar_integracao" style="text-align: center; margin-top: 30px; display: none;">
+					<a href="#" class="form_button" style="max-width: 140px; height: 30px; font-size: 18px; padding-top: 3px; padding-bottom: 8px;" title="Finalizar integração">
+						<img height="25" src="img/checked.png" style="margin-right:10px; margin-top: 5px;"/><span style="vertical-align: bottom;">Finalizar</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- DETALHAMENTO DOS DADOS DE UMA LINHA -->
+	<div id="containerInfo" style="display: none;">
+		<div style="top: 0px; text-align: center;">
+			<font class="info_linha_titulo">INFORMAÇÕES DA LINHA</font>
+			<hr style="margin-top:20px; margin-bottom: 20px; width: 50%; max-width: 650px;" size="1" color="#41860d"/>
+		</div>
+
+		<div class="info_linha_box">
+			<!-- Resumo da linha -->
+			<div class="info_linha_resumo">
+				<a id="btnSpeakLinha" href="#" class="btn_speak speaker" style="position: absolute; top: 5px; right: 0; text-align: center;"></a>
+			
+				<div id="linhaResumoLoading" class="loading_overlay" style="background-color: white;">
+					<img class="loading_image loading_animation" src="img/load.png" alt="Carregando"/>
+				</div>
+				
+				<div style="display: flex; width: 100%; height: 100%;">
+					<a class="btn_print" href="#" onclick="printPage(event);" title="Imprimir página">
+						<img src="img/print.png" style="display: inline-block;"/>
+						<img src="img/pdf.png" style="display: inline-block;"/>
+					</a>
+				
+					<div style="display: inline-block; width: 18%; height: 100%; position: relative;">
+						<font id="linha_cod" class="info_linha_numero"></font>
+					</div>
+					<div style="display: inline-block; width: 64%; height: 100%;">
+						<div style="height: 70%; width: 100%;">
+							<font id="linha_nome" class="info_linha_nome"></font>
+						</div>
+						<div style="height: 30%; width: 100%;">
+							<span class="info_linha_operadores_label">Operadoras: </span>
+							<font id="linha_operadores" class="info_linha_operadores"></font>
+						</div>
+					</div>
+					<div style="display: inline-block; width: 18%; height: 100%; position: relative; pointer-events: none;">
+						<font id="linha_tarifa" class="info_linha_tarifa"></font>
+					</div>
+				</div>				
+			</div>
+			
+			<div style="display: flex; margin-top: 5px; margin-bottom: 5px;">
+				<div style="flex: 1;">
+				<div id="radioSwitchIntegracao" class="radio_switch" style="display: none;">
+					<div class="radio_switch_container radio_switch_container_left radio_switch_container_unchecked">
+						<span style="display: block;">ORIGEM</span>
+						<span class="radio_switch_label_numero">402.1</span>
+					</div>
+					<div class="radio_switch_container radio_switch_container_right radio_switch_container_unchecked">
+						<span style="display: block;">DESTINO</span>
+						<span class="radio_switch_label_numero">099.1</span>
+					</div>
+				</div>
+				</div>
+
+				<div style="flex: 1; text-align: right;">
+				<div id="radioSentidoContainer" style="height: 42px; display: none;">
+					<div style="display: inline-block;">
+						<div style="float:left; position: relative;" onclick="setCurrentSentidoAs('IDA');">
+							<label class="label_btn_sentido_unchecked_left label_sentido_radio" style="padding: 10px;">IDA</label>
+							<input class="radio_sentido" type="radio" value="IDA" name="sentido">
+						</div>
+						<div style="float:right; position: relative;" onclick="setCurrentSentidoAs('VOLTA');">
+							<label class="label_btn_sentido_checked_right label_sentido_radio" style="padding: 10px;">VOLTA</label>
+							<input class="radio_sentido" type="radio" value="VOLTA" name="sentido">
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			<div style="display: inline-block; width: 100%; position: relative;">
+				<div style="width: 100%; display: flex;">
+					<!-- Bloco de resumo horário -->
+					<div class="info_bloco" style="flex: 1;" onclick="showHorariosLinha();">
+						<div id="horarioResumoLoading" class="loading_overlay" style="background-color: white;">
+							<img class="loading_image loading_animation" src="img/load.png" alt="Carregando">
+						</div>
+						
+						<div class="info_titulo">HORÁRIOS</div>
+					
+						<div class="info_bloco_resumo">
+							<font style="opacity:0.5;">Sentido:&nbsp;</font><font id="resumoHorarioSentido" class="info_resumo"></font><br>
+							<font style="opacity:0.5;">Dias:&nbsp;</font><font id="resumoHorarioDias" class="info_resumo"></font><br>
+							<div id="lblDuracaoMedia"><font style="opacity:0.5;">Duração Média:&nbsp;</font><font id="resumoHorarioTempoMedio" class="info_resumo"></font><br></div>
+							<font style="opacity:0.5;">Partidas:&nbsp;</font><font id="resumoHorarioPartidas" class="info_resumo"></font>
+						</div>
+
+						<div class="info_bloco_hover">
+							<img src="img/open.png" style="display: block; margin: 0 auto; margin-top: 20%;">
+							<font class="info_bloco_hover_label">Clique para expandir</font>
+						</div>
+						
+						<a id="btnSpeakResumoHorario" href="#" class="btn_speak speaker" style="position: absolute; top: 5px; right: 3px; text-align: center;"></a>
+
+						<div style="position: absolute;right: 0; bottom:0; display: inline-block; margin-bottom: 10px; margin-right: 10px;">
+							<div style="display: inline-grid; text-align: center; ">
+								<img src="img/tap.png" style="display: inline; margin-left: 10px;"/>
+								<div style="font-size: 13px; color: black; text-decoration: none; display: inline-block; font-family: Helvetica, sans-serif;"></div>
+							</div>
+						</div>
+					</div>
+					
+					<div style="width: 5px;"></div>
+
+					<!-- Bloco de resumo do itinerário -->
+					<div class="info_bloco" style="flex: 1;" onclick="showItinerarioLinha();">
+						<div id="itinerarioResumoLoading" class="loading_overlay" style="background-color: white;">
+							<img class="loading_image loading_animation" src="img/load.png" alt="Carregando">
+						</div>
+					
+						<div class="info_titulo">ITINERÁRIO</div>
+						
+						<div class="info_bloco_resumo">
+							<font style="opacity:0.5;">Sentido:&nbsp;</font><font id="resumoItinerarioSentido" class="info_resumo"></font><br>
+							<div id="resumoItinerarioOriDest">
+								<font style="opacity:0.5;">Origem:&nbsp;</font><font id="resumoItinerarioOrigem" class="info_resumo"></font><br>
+								<div id="resumoItinerarioOriDestDest" style="display: inline;">
+									<font style="opacity:0.5;">Destino:&nbsp;</font><font id="resumoItinerarioDestino" class="info_resumo"></font><br>
+								</div>
+							</div>
+							<font style="opacity:0.5;">Extensão:&nbsp;</font><font id="resumoItinerarioExtensao" class="info_resumo"></font><br>
+							<font style="opacity:0.5;">Trechos:&nbsp;</font><font id="resumoItinerarioTrechos" class="info_resumo"></font>
+						</div>
+						
+						<div class="info_bloco_hover">
+							<img src="img/open.png" style="display: block; margin: 0 auto; margin-top: 20%;">
+							<font class="info_bloco_hover_label">Clique para expandir</font>
+						</div>
+						
+						<a id="btnSpeakResumoItinerario" href="#" class="btn_speak speaker" style="position: absolute; top: 5px; right: 3px; text-align: center;"></a>
+
+						<div style="position: absolute;right: 0; bottom:0; display: inline-block; margin-bottom: 10px; margin-right: 10px;">
+							<div style="display: inline-grid; text-align: center; ">
+								<img src="img/tap.png" style="display: inline; margin-left: 10px;"/>
+								<div style="font-size: 13px; color: black; text-decoration: none; display: inline-block; font-family: Helvetica, sans-serif;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Bloco de expansão do horário -->
+				<div id="info_horario" class="info_expansao">
+					<div id="horarioLoading" class="loading_overlay" style="z-index: 7;">
+						<img class="loading_image loading_animation" src="img/load.png" alt="Carregando">
+					</div>
+					
+					<div id="radioTipoArvoreHorariaContainer" style="display: inline-block; position: absolute; right: 5px; top: 10px;">
+						<div style="float:left; position: relative;" onclick="setCurrentHorarioTreeAs('vertical');">
+							<label class="label_btn_sentido_unchecked_left label_sentido_radio lista_linhas_btn_tipo" style="background-image: url('img/arrow_down.png');"></label>
+							<input class="radio_sentido" type="radio" value="vertical" name="tipo">
+						</div>
+						<div style="float:right; position: relative;" onclick="setCurrentHorarioTreeAs('horizontal');">
+							<label class="label_btn_sentido_checked_right label_sentido_radio lista_linhas_btn_tipo" style="background-image: url('img/arrow_right.png');"></label>
+							<input class="radio_sentido" type="radio" value="horizontal" name="tipo">
+						</div>
+					</div>
+				
+					<a onclick="display_div('info_horario', 'none');" class="info_expansao_close" title="Fechar">
+						<img height="70" src="img/fechar.png">
+					</a>
+					
+					<div style="position: absolute; top: 60px; width: 100%; text-align: center;">
+						<font class="info_expansao_titulo">HORÁRIOS</font>
+						<br/>
+						<font class="info_expansao_titulo" style="font-size: 13px;">(De saída do ponto de origem)</font>	
+
+						<div style="text-align:left; padding: 30px;">
+							<div id="horarioPontoOrigem">
+								<span class="horario_label_origem">Origem: </span>
+								<span id="horarioPontoOrigemValue" class="horario_label_value"></span>
+							</div>
+							<div id="tree-horario"></div>
+						</div>
+					</div>
+					
+					<a id="btnSpeakHorarios" href="#" class="btn_speak speaker" style="position: absolute; top: 50px; right: 5px;"></a>
+				</div>
+
+				<!-- Bloco de expansão do itinerário -->
+				<div id="info_itinerario" class="info_expansao">
+					<div id="itinerarioLoading" class="loading_overlay" style="z-index: 7;">
+						<img class="loading_image loading_animation" src="img/load.png" alt="Carregando">
+					</div>
+				
+					<a onclick="display_div('info_itinerario', 'none');" class="info_expansao_close" title="Fechar">
+						<img height="70" src="img/fechar.png">
+					</a>
+					
+					<div style="position: absolute; top: 60px; width: 100%; text-align: center;">
+						<font class="info_expansao_titulo">ITINERÁRIO</font>
+
+						<div style="text-align:left; padding:30px;">
+							<div id="itinerarioPontoOrigemDestino">
+								<div>
+									<span class="itinerario_label_origem">Origem: </span>
+									<span id="itinerarioPontoOrigemValue" class="itinerario_label_value"></span>
+								</div>
+								<div style="margin-top: 5px;">
+									<span class="itinerario_label_destino">Destino: </span>
+									<span id="itinerarioPontoDestinoValue" class="itinerario_label_value"></span>
+								</div>
+							</div>
+							<div id="divItinerarios" class="itinerario_container"></div>
+						</div>
+					</div>
+					
+					<a id="btnSpeakItinerario" href="#" class="btn_speak speaker" style="position: absolute; top: 5px; right: 5px;"></a>
+				</div>
+				
+				<!-- Mapa com itinerário -->
+				<div id="divMapaLinha" class="mapa_percurso_container mapa_percurso_container_screen">
+					<!-- Painel de legenda -->
+					<div id="mapa-linha-legend-btn" class="mapa_legenda_panel">
+						<div style="display: flex; min-width: 130px; max-height: 60px;">
+							<img src="img/parada.svg" style="flex: 1; width: 44px; height: auto;" alt="Parada de ônibus"/>
+							<div style="flex: 1; padding: 20px; padding-left: 0px;">
+								<span>Parada</span>
+							</div>
+						</div>
+						<div style="display: flex; min-width: 130px; max-height: 60px;">
+							<img src="img/percurso.svg" style="flex: 1; width: 44px; height: auto;" alt="Percurso da linha"/>
+							<div style="flex: 1; padding: 20px; padding-left: 0px;">
+								<span>Percurso</span>
+							</div>
+						</div>
+						<div style="display: flex; min-width: 130px; max-height: 60px;">
+							<div style="flex: 1; ">
+								<img src="img/iconmap-bus-grey.png" style="width: 44px; height: auto;" alt="Ônibus"/>
+							</div>
+							<div style="flex: 1; padding: 20px; padding-left: 0px;">
+								<span>Ônibus</span>
+							</div>
+						</div>
+						<div style="min-width: 130px;">
+							<img src="img/location-point.png" style="width: 44px; height: auto;" alt="Localização do usuário">
+							<span style="vertical-align: super;">Meu Local</span>
+						</div>
+					</div>
+
+					<!-- Painel de legenda -->
+					<div id="mapa-linha-veiculos-btn" class="mapa_veiculos_panel">
+						<img src="img/close.png" onclick="togglePanelVeiculos(event);" class="mapa_veiculos_panel_close_img">
+						<div style="margin-bottom: 5px; font-size: 13px; text-align: center;">
+							<span>Total: </span><span id="mapa_linha_veiculos_total_field"></span>
+						</div>
+						<div id="mapa_linha_veiculos_table_container" style="min-width: 200px;"></div>
+						<!--div style="min-width: 200px; margin-top: 8px; font-size: 12px; color: black;">Obs.: o serviço de localização de veículos se encontra em aperfeiçoamento. No momento está restrito às operadoras: <span style="color: white;">Marechal</span>, <span style="color: white;">Piracicabana</span>, <span style="color: white;">Pioneira</span>, <span style="color: white;">Urbi</span>, e <span style="color: white;">São José</span>.</div-->
+					</div>
+
+					<div id="btnShowPanelLegendaLinha" class="mapa_legenda_btn" onclick="togglePanelLegendaLinha(event);" title="Legenda" style="background-color: rgba(173, 173, 177, 0.67); padding: 10px; border-bottom-left-radius: 10px; border-top-left-radius: 10px;">
+						<span style="color: yellow; font-weight: bold;">L</span>
+					</div>
+
+					<!-- Botão de fullscreen -->
+					<a class="mapa_btn_fullscreen mapa_btn" onclick="fullscreenMapaLinha(event);"><img src="img/fullscreen.png"/></a>
+
+					<!-- Botão de localização -->
+					<a class="mapa_btn_locate mapa_btn" title="Mostrar meu local" onclick="requestLocationMapaPercurso(event);"><img src="img/locate.png"/></a>
+
+
+					<!-- Botão de localização de veículos -->
+					<div class="mapa_paradas_veiculos_btn" onclick="togglePanelVeiculos(event);" title="Veículos em operação">
+						<img id="mapa_paradas_veiculos_img" src="img/map-location.svg" class="mapa_paradas_veiculos_img"/>
+					</div>
+
+					<!-- Checkbox de paradas -->
+					<div class="mapa_paradas_options_btn" onclick="toggleParadasLayerMapaPercurso(event);" title="Ocultar paradas">
+						<img src="img/parada.svg" style="position: absolute; width: 30px; height: auto; top: 0;"/>
+						<input id="checkboxParadasMapaPercurso" type="checkbox" name="ocultarParada" style="position: absolute; bottom: 0; left: 5px;"/>
+					</div>
+
+
+					<div id="map_linha" style="margin: 0 auto; position: relative; z-index: 1; width: 100%; height: 100%;"></div>
+
+					<!--span class="msg_advertencia_localizacao"><img src="img/error-triangle.svg" style="max-width: 12px; height: auto;"/> O serviço de localização de veículos se encontra em aperfeiçoamento</span-->
+				</div>
+			
+			</div>
+		</div>
+
+		<div id="panelDataAtualizacao" style="display: none; text-align: center; width: 100%; font-size: 12px; margin-top: 5px; font-weight: bold; font-family: 'Roboto', Helvetica, sans serif;">Data de atualização dos dados: <span class="data_field"></span></div>
+	</div>
+
+
+	<!-- DETALHAMENTO DE UMA INTEGRAÇÃO -->
+	<div id="containerIntegracaoInfo" style="display: none; padding-top: 50px;">
+		<div style="top: 0px; text-align: center;">
+			<font class="lista_linhas_titulo">INTEGRAÇÃO</font>
+			<hr style="margin-top:20px; margin-bottom: 20px; width: 50%;" size="1" color="#41860d"/>
+		</div>
+		<div style="max-width: 800px; margin-left: auto; margin-right: auto;">
+
+			<div style="display: flex;">
+				<div style="flex: 1;">
+					<div style="display: table; min-height: 230px; width: 100%;">
+						<div id="integracao_info_lista" class="info_integracao_lista" style="display: table-cell; vertical-align: middle;"></div>
+					</div>
+				</div>
+
+				<div style="flex: 1 auto;">
+					<div style="width: 100%; display: flex;">
+
+						<div class="info_bloco" style="flex: 1;" onclick="showHorariosLinhaIntegracao();">
+							<div class="info_titulo">HORÁRIOS</div>
+						
+							<div class="info_bloco_resumo">
+								<font style="opacity:0.5;">Sentido:&nbsp;</font><font id="resumoHorarioSentidoIntegracao" class="info_resumo"></font><br>
+								<font style="opacity:0.5;">Dias:&nbsp;</font><font id="resumoHorarioDiasIntegracao" class="info_resumo"></font><br>
+								<font style="opacity:0.5;">Duração Média:&nbsp;</font><font id="resumoHorarioTempoMedioIntegracao" class="info_resumo"></font><br>
+								<font style="opacity:0.5;">Partidas:&nbsp;</font><font id="resumoHorarioPartidasIntegracao" class="info_resumo"></font>
+							</div>
+
+							<div class="info_bloco_hover">
+								<img src="img/open.png" style="display: block; margin: 0 auto; margin-top: 20%;"/>
+								<font class="info_bloco_hover_label">Clique para expandir</font>
+							</div>
+
+							<div style="position: absolute;right: 0; bottom:0; display: inline-block; margin-bottom: 10px; margin-right: 10px;">
+								<div style="display: inline-grid; text-align: center; ">
+									<img src="img/tap.png" style="display: inline; margin-left: 10px;"/>
+									<div style="font-size: 13px; color: black; text-decoration: none; display: inline-block; font-family: Helvetica, sans-serif;"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="info_bloco" style="flex: 1;" onclick="showItinerarioLinhaIntegracao();">
+							<div class="info_titulo">ITINERÁRIO</div>
+							
+							<div class="info_bloco_resumo">
+								<font style="opacity:0.5;">Sentido:&nbsp;</font><font id="resumoItinerarioSentidoIntegracao" class="info_resumo"></font><br>
+								<div id="resumoItinerarioOriDestIntegracao">
+									<font style="opacity:0.5;">Origem:&nbsp;</font><font id="resumoItinerarioOrigemIntegracao" class="info_resumo"></font><br>
+									<div id="resumoItinerarioOriDestDestIntegracao" style="display: inline;">
+										<font style="opacity:0.5;">Destino:&nbsp;</font><font id="resumoItinerarioDestinoIntegracao" class="info_resumo"></font><br>
+									</div>
+								</div>
+								<font style="opacity:0.5;">Extensão:&nbsp;</font><font id="resumoItinerarioExtensaoIntegracao" class="info_resumo"></font><br>
+								<font style="opacity:0.5;">Trechos:&nbsp;</font><font id="resumoItinerarioTrechosIntegracao" class="info_resumo"></font>
+							</div>
+							
+							<div class="info_bloco_hover">
+								<img src="img/open.png" style="display: block; margin: 0 auto; margin-top: 20%;">
+								<font class="info_bloco_hover_label">Clique para expandir</font>
+							</div>
+
+							<div style="position: absolute;right: 0; bottom:0; display: inline-block; margin-bottom: 10px; margin-right: 10px;">
+								<div style="display: inline-grid; text-align: center; ">
+									<img src="img/tap.png" style="display: inline; margin-left: 10px;"/>
+									<div style="font-size: 13px; color: black; text-decoration: none; display: inline-block; font-family: Helvetica, sans-serif;"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="mapa_percurso_container mapa_percurso_container_screen">
+				<div id="map_integracao" style="margin: 0 auto; position: relative; z-index: 1; width: 100%; height: 100%;"></div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- PÁGINA DE CONTATO -->
+	<div id="containerContato">
+		<img class="dfnoponto-logo" src="img/logo_contato.png"/>
+
+		<h1 class="contato_titulo">Alguma <strong>informação</strong> discrepante ou <strong>sugestão</strong>? Por favor use os canais abaixo para entrar em contato conosco.</h1>
+
+
+		<h1 class="contato_titulo">Sua opinião é muito importante para o aprimoramento do nosso serviço <strong>:)</strong></h1>
+
+
+		<a href="https://www.ouv.df.gov.br/">
+			<img src="img/logo_ouvidoria.png" class="img_contato" style="margin-top: 40px;"/>
+		</a>
+	</div>
+
+
+	<a id="btnRecOn" style="display: none; position: relative; z-index: 10;" onclick="initSpeechRecognizer(event);" href="#">
+		<img src="img/mic_rec_mini.png" class="form_imagem btn_shadow" style="position: fixed; bottom: 8px; right: 5px;"/>
+	</a>
+</body>
+</html>
